@@ -129,6 +129,7 @@ public class Hexadecimal implements Comparable{
 	System.out.println( b1.equals(r1) );
 	
 	/*
+
 	System.out.println();
 	System.out.println("testing...");
 
@@ -154,6 +155,7 @@ public class Hexadecimal implements Comparable{
 	System.out.println();
 	//System.out.println(h1.compareTo("7F")); //should throw error
 	//System.out.println(h2.equals(null)); //should throw error
+
 	*/
 	
     } //end main

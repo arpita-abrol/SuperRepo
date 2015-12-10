@@ -128,6 +128,8 @@ public class Rational implements Comparable{
 
     public static void main(String[] args){
 
+	/*
+
 	Rational z = new Rational(1,2);
 	Rational y = new Rational(1,3);
 	Rational x = new Rational(6,9);
@@ -151,6 +153,8 @@ public class Rational implements Comparable{
 
 	String xyz = "";
 	//a.compareTo(xyz); //error
+
+	*/
 	
     }
 

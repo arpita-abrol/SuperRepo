@@ -120,9 +120,50 @@ public class SuperArray{
         return _lastPos + 1;
     }
 
+    //searches array
+    public int linSearch( Comparable val ) {
+	for ( int i = 0; i < _lastPos; i++ ) {
+	    if ( _data[i].equals(val) ) {
+		return i;
+	    }
+	}
+	return -1;
+    }
+
+    //check if _data is sorted
+    public boolean isSorted() {
+	for( int i = 0; i < _lastPos; i++ ) {
+	    if ( _data[i].compareTo( _data[i+1] ) > 0 ) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
 
     //main method for testing
     public static void main( String[] args ) {
+
+	SuperArray pikachu = new SuperArray();
+	pikachu.add( new Binary(2) );
+	pikachu.add( new Binary(7) );
+	pikachu.add( new Hexadecimal(7) );
+	pikachu.add( new Rational(7) );
+	pikachu.add( new Hexadecimal(10) );
+	pikachu.add( new Rational(11) );
+
+	System.out.println( pikachu );
+	System.out.println( pikachu.isSorted() );
+	System.out.println( pikachu.linSearch( new Rational(10) ) );
+
+	pikachu.remove(2);
+	pikachu.add( new Rational(11,2) );
+	pikachu.add( 2, new Binary("10001001") );
+
+	System.out.println( pikachu );
+	System.out.println( pikachu.isSorted() );
+	System.out.println( pikachu.linSearch( new Binary("100") ) );
+	
 	/*
         SuperArray curtis = new SuperArray();
 	System.out.println("Printing empty SuperArray curtis...");

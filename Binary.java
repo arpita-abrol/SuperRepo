@@ -110,17 +110,22 @@ public class Binary implements Comparable{
     public int compareTo( Object o ) {
 	if (o == null) 
 	    throw new NullPointerException("\ncompareTo() input null");
-	if (!(o instanceof Binary))
-	    throw new ClassCastException("\ncompareTo() input not a Binary");
-	if (this._decNum == ((Binary)o)._decNum) {
+	if (!(o instanceof Comparable))
+	    throw new ClassCastException("\ncompareTo() input not a Comparable");
+	if (this.value() == ((Comparable)o).value()) {
 	    return 0;
 	}
-        if (this._decNum < ((Binary)o)._decNum) {
+        if (this.value() < ((Comparable)o).value()) {
 	    return -1;
 	}
 	else {
 	    return 1;
 	}
+    }
+
+    //each class in the Comparable interface will use value to compare nums
+    public double value() {
+	return (double)(this._decNum);
     }
 
 

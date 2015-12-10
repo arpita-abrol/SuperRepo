@@ -101,12 +101,12 @@ public class Hexadecimal implements Comparable{
     public int compareTo( Object o ) {
 	if (o == null) 
 	    throw new NullPointerException("\ncompareTo() input null");
-	if (!(o instanceof Hexadecimal))
-	    throw new ClassCastException("\ncompareTo() input not a Hexadecimal");
-	if (this._decNum == ((Hexadecimal)o)._decNum) {
+	if (!(o instanceof Comparable))
+	    throw new ClassCastException("\ncompareTo() input not a Comparable");
+	if (this.value() == ((Comparable)o).value()) {
 	    return 0;
 	}
-	else if (this._decNum < ((Hexadecimal)o)._decNum) {
+	else if (this.value() < ((Comparable)o).value()) {
 	    return -1;
 	}
 	else {
@@ -114,10 +114,21 @@ public class Hexadecimal implements Comparable{
 	}
     }
 
+    //each class in the Comparable interface will use value to compare nums
+    public double value() {
+	return (double)(this._decNum);
+    }
+
     
     //main method for testing!!!
     public static void main( String[]args ) {
 
+	Comparable b1 = new Binary(10);
+	Comparable h1 = new Hexadecimal(10);
+	Comparable r1 = new Rational(10);
+	System.out.println( b1.equals(r1) );
+	
+	/*
 	System.out.println();
 	System.out.println("testing...");
 
@@ -143,6 +154,7 @@ public class Hexadecimal implements Comparable{
 	System.out.println();
 	//System.out.println(h1.compareTo("7F")); //should throw error
 	//System.out.println(h2.equals(null)); //should throw error
+	*/
 	
     } //end main
     

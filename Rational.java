@@ -21,14 +21,14 @@ public class Rational implements Comparable{
 	
      //overloaded constructor: checks for division by 0
     public Rational(int n, int d){
-	this();
-	if (d == 0) {
-	    System.out.println("Error: Division by zero");
-	}
-	else {
-	    num = n;
-	    den = d;
-	}
+	num = n;
+	den = d;
+    }
+
+    //overloaded constructor: one val (num)
+    public Rational(int n) {
+	num = n;
+	den = 1;
     }
 
 
@@ -111,14 +111,19 @@ public class Rational implements Comparable{
     public int compareTo( Object o ) {
 	if (o == null) 
 	    throw new NullPointerException("\ncompareTo() input null");
-	if (!(o instanceof Rational))
-	    throw new ClassCastException("\ncompareTo() input not a Rational");
-	if (this.floatValue() == ((Rational)(o)).floatValue()) 
+	if (!(o instanceof Comparable))
+	    throw new ClassCastException("\ncompareTo() input not a Comparable");
+	if (this.value() == ((Comparable)(o)).value()) 
 	    return 0;
-	if (this.floatValue() > ((Rational)(o)).floatValue()) 
+	if (this.value() > ((Comparable)(o)).value()) 
 	    return 1;
 	else 
 	    return -1;
+    }
+
+    //each class in the Comparable interface will use value to compare nums
+    public double value() {
+	return (double)(this.floatValue());
     }
 
     public static void main(String[] args){

@@ -1,24 +1,11 @@
-//Team orange-bananas -- Jannie Li, Arpita Abrol
-//APCS pd10
-//HW42 -- Array of Titanium
-//2015-12-04
+/*
+Arpita Abrol
+APCS1 pd10
+HW45 -- Come Together
+2015-12-10
+*/
 
-/*****************************
- * SKELETON for
- * class SuperArray --  A wrapper class for an array. 
- * Maintains functionality:
- *  access value at index
- *  overwrite value at index
- *  report number of meaningful items
- * Adds functionality to std Java array:
- *  resizability
- *  ability to print meaningfully
- *  add item (at end)
- *  insert item
- *  remove item (while maintaining "left-justification")
- *****************************/
-
-public class SuperArray implements ListInt {
+public class SuperArray implements Comparable{
  
     //~~~~~INSTANCE VARS~~~~~
     //underlying container, or "core" of this data structure:
@@ -33,18 +20,15 @@ public class SuperArray implements ListInt {
 		
     //~~~~~METHODS~~~~~
     //default constructor – initializes 10-item array
-    public SuperArray() 
-    { 
+    public SuperArray() { 
 	_data = new int[10];
 	_lastPos = -1; //flag to indicate no lastpos yet
 	_size = 0;	
     }
 
 		
-    //output array in [a,b,c] format, eg
-    // {1,2,3}.toString() -> "[1,2,3]"
-    public String toString() 
-    { 
+    //output array in [a,b,c] format
+    public String toString() { 
 	String foo = "[";
 	for( int i = 0; i < _size; i++ ) {
 	    foo += _data[i] + ",";
@@ -58,8 +42,7 @@ public class SuperArray implements ListInt {
 
 		
     //double capacity of this SuperArray
-    private void expand() 
-    { 
+    private void expand() { 
 	int[] temp = new int[ _data.length * 2 ];
 	for( int i = 0; i < _data.length; i++ )
 	    temp[i] = _data[i];
@@ -73,8 +56,7 @@ public class SuperArray implements ListInt {
 		
     //mutator -- set value at index to newVal, 
     //           return old value at index
-    public int set( int index, int newVal ) 
-    { 
+    public int set( int index, int newVal ) { 
  	int temp = _data[index];
 	_data[index] = newVal;
 	return temp;
@@ -83,8 +65,7 @@ public class SuperArray implements ListInt {
 
     // ~~~~~~~~~~~~~~ PHASE II ~~~~~~~~~~~~~~
     //adds an item after the last item
-    public void add( int newVal )
-    {
+    public void add( int newVal ) {
 	//make sure there's room
         if (_data.length == _size) {
 	    this.expand();
@@ -99,27 +80,20 @@ public class SuperArray implements ListInt {
 
     //inserts an item at index
     //shifts existing elements to the right
-    public void add( int index, int newVal )
-    {
+    public void add( int index, int newVal ){
 	//make sure there's room
         if (_data.length == _size) {
 	    this.expand();
 	}
-
 	//if index after lastPos, just add it last
 	if (index > _lastPos) {
 	    add(newVal);
-	    //add already updates vars
 	}
-
 	//otherwise shift and add
 	else {
-	    //shift right
 	    for (int i = _lastPos ; i >= index ; i--) {
 		_data[i+1] = _data[i];
 	    }
-
-	    //add and update vars
 	    _data[index] = newVal;
 	    _lastPos += 1;
 	    _size = size();
@@ -129,29 +103,24 @@ public class SuperArray implements ListInt {
 
     //removes the item at index
     //shifts elements left to fill in newly-empted slot
-    public void remove( int index )
-    {
+    public void remove( int index ){
 	//shift left, item to remove doesn't matter
 	for (int i = index ; i < _lastPos ; i++) {
 	    _data[i] = _data[i+1];
 	}
-
-	//update vars
 	_lastPos -= 1;
 	_size = size();
     }
 
 
     //return number of meaningful items in _data
-    public int size()
-    {
+    public int size(){
         return _lastPos + 1;
     }
 
 
     //main method for testing
-    public static void main( String[] args ) 
-    {
+    public static void main( String[] args ) {
         SuperArray curtis = new SuperArray();
 	System.out.println("Printing empty SuperArray curtis...");
 	System.out.println(curtis);
@@ -211,25 +180,6 @@ public class SuperArray implements ListInt {
 
 	System.out.println("Printing SuperArray mayfield's size...");
 	System.out.println(mayfield.size());
-
-	System.out.println("Testing that ensuring space works out");
-        ListInt grr = new SuperArray();
-	
-	for (int i = 1 ; i < 12 ; i++) {
-	    grr.add(i);
-	}
-	
-	System.out.println(grr);
-
-	// ========== PHASE III ADDITONS =========
-
-	System.out.println("Testing grr's set method");
-	System.out.println(grr.set( 0, 52 ));
-	System.out.println(grr);
-
-	System.out.println("Testing grr's get method");
-	System.out.println(grr.get( 0 ));
-
 
     }//end main
 		

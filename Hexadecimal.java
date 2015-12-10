@@ -1,11 +1,11 @@
 /*
-Team ArpAhNet -- Sarah Yoon, Arpita Abrol
+Arpita Abrol
 APCS1 pd10
-HW44 -- This or That or Fourteen Other Things
-2015-12-08
+HW45 -- Come Together
+2015-12-10
 */
 
-public class Hexadecimal {
+public class Hexadecimal implements Comparable{
 
     //class var
     private static final String ALLHEX = "0123456789ABCDEF";
@@ -93,21 +93,25 @@ public class Hexadecimal {
     
     //checks to see if 2 objects are equivalent
     public boolean equals( Object val ) {
-	if (val instanceof Hexadecimal) {
-	    return compareTo(val) == 0;
-	}
-	else {throw new ClassCastException("\nequals() input not a Hexadecimal");}
+	return compareTo(val) == 0;
     }
 
     
     //tells which of the 2 hexadecimal objects is greater
-    public int compareTo( Object other ) {
-	if (other instanceof Hexadecimal) {
-		if (this._decNum == ((Hexadecimal)other)._decNum) {return 0;}
-		else if (this._decNum < ((Hexadecimal)other)._decNum) {return -1;}
-		else {return 1;}
+    public int compareTo( Object o ) {
+	if (o == null) 
+	    throw new NullPointerException("\ncompareTo() input null");
+	if (!(o instanceof Hexadecimal))
+	    throw new ClassCastException("\ncompareTo() input not a Hexadecimal");
+	if (this._decNum == ((Hexadecimal)o)._decNum) {
+	    return 0;
 	}
-	else {throw new ClassCastException("\ncompareTo() input not a Hexadecimal");}
+	else if (this._decNum < ((Hexadecimal)o)._decNum) {
+	    return -1;
+	}
+	else {
+	    return 1;
+	}
     }
 
     
@@ -138,7 +142,7 @@ public class Hexadecimal {
 
 	System.out.println();
 	//System.out.println(h1.compareTo("7F")); //should throw error
-	//System.out.println(h2.equals("10E9")); //should throw error
+	//System.out.println(h2.equals(null)); //should throw error
 	
     } //end main
     
